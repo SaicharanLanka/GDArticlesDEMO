@@ -1,0 +1,19 @@
+
+package com.gdtask.saicharan.myapplication.models;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import org.parceler.Parcel;
+
+@Parcel
+public class Multimedium {
+
+    @SerializedName("url")
+    @Expose
+    private String url;
+
+    public String getThumbnailUrl() {
+        return "https://www.nytimes.com/" + url;
+    }
+}
