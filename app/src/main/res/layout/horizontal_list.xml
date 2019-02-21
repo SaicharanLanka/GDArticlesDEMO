@@ -58,7 +58,7 @@
                 android:paddingRight="10dp"
                 android:layout_marginTop="2dp"
                 android:textSize="10sp"
-                android:layout_weight="0.6"
+                android:layout_weight="0.5"
                 android:maxLines="2"
                 android:text=""
                 android:textColor="@color/colorGreyLight" />
@@ -72,7 +72,7 @@
                 android:drawableLeft="@android:drawable/ic_menu_my_calendar"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textSize="8sp"
+                android:textSize="6sp"
                 android:text="22-2-2019"
                 android:textColor="@color/colorGreyLight" />
 

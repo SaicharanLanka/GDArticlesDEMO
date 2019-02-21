@@ -1,10 +1,17 @@
 package com.gdtask.saicharan.myapplication.activities;
 
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -67,7 +74,7 @@ public class MostViewedArtilcles extends AppCompatActivity {
 
         ItemClickSupport.addTo(binding.horizontalRecyclerViewPolitics).setOnItemClickListener(
                 (RecyclerView recyclerView, int position, View v) -> {
-                   // intentUtil(position, politicsList);
+                    intentdatapassing(position, politicsList);
                     Toast.makeText(getApplicationContext(), "Item Clicked", Toast.LENGTH_SHORT).show();
                 });
 
@@ -126,4 +133,23 @@ public class MostViewedArtilcles extends AppCompatActivity {
         return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
+    public void intentdatapassing(int position, List<PopularArticle> list) {
+        PopularArticle article = list.get(position);
+        String url = article.webUrl;
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_action_name);
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, article.webUrl);
+        int requestCode = 100;
+        PendingIntent pendingIntent = PendingIntent.getActivity(MostViewedArtilcles.this,
+                requestCode,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        builder.setToolbarColor(ContextCompat.getColor(MostViewedArtilcles.this, R.color.colorPrimary));
+        builder.setActionButton(bitmap, "Share Link", pendingIntent, true);
+        CustomTabsIntent customTabsIntent = builder.build();
+        customTabsIntent.launchUrl(MostViewedArtilcles.this, Uri.parse(url));
+    }
 }
