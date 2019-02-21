@@ -75,7 +75,7 @@ public class MostViewedArtilcles extends AppCompatActivity {
         ItemClickSupport.addTo(binding.horizontalRecyclerViewPolitics).setOnItemClickListener(
                 (RecyclerView recyclerView, int position, View v) -> {
                     intentdatapassing(position, politicsList);
-                    Toast.makeText(getApplicationContext(), "Item Clicked", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getApplicationContext(), "Item Clicked", Toast.LENGTH_SHORT).show();
                 });
 
         OkHttpClient client = new OkHttpClient();
